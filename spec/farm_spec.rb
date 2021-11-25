@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 RSpec.describe Farm do
-  it "has a version number" do
+  it "Farm has a version number" do
     expect(Farm::VERSION).not_to be nil
   end
 
   describe Farm::Data do
-    it "has data" do
-      expect(Farm::Data.new).not_to be nil
+    before :each do
+      @data = Farm::Data.new(1)
+    end
+
+    it "Farm has data" do
+      expect(@data).not_to be nil
+    end
+
+    it "Data has an id" do
+      expect(@data.id).to eq(1)
     end
   end
 end

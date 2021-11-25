@@ -7,19 +7,23 @@ RSpec.describe Farm do
 
   describe Farm::Data do
     before :each do
-      @data = Farm::Data.new(1, "Granja de prueba")
+      @data = Farm::Data.new(1, "La Granja de Juan", "Granja de vacas")
     end
 
     it "Farm has data" do
       expect(@data).not_to be nil
     end
 
-    it "Data has an id" do
+    it "Farm has an id" do
       expect(@data.id).to eq(1)
     end
 
-    it "Data has a name" do
-      expect(@data.name).to eq("Granja de prueba")
+    it "Farm has a name" do
+      expect(@data.name).to eq("La Granja de Juan")
+    end
+
+    it "Farm has a type" do
+      expect(@data.type).to eq("Granja de vacas")
     end
   end
 end

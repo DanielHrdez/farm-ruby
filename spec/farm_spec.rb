@@ -30,4 +30,10 @@ RSpec.describe Farm do
       expect(@data.description).to eq("La Granja de Juan es una granja de vacas")
     end
   end
+
+  describe Farm::Funtion do
+    it "Farm has funtion" do
+      expect(Farm::Funtion).not_to be nil
+    end
+  end
 end

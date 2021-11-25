@@ -2,7 +2,9 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/farm`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+The gem Farm has two classes, Data and Function.
+* The first one have the information.
+* The second one have the functionalities.
 
 ## Installation
 
@@ -22,7 +24,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Into your .rb file:
+
+1. require 'farm'
+2. Farm::Data.new(id, name, type, description) or Farm::Function.new(life_conditions, care, reproduction)
 
 ## Development
 

@@ -32,8 +32,16 @@ RSpec.describe Farm do
   end
 
   describe Farm::Function do
+    before :each do
+      @functions = Farm::Function.new("healthy")
+    end
+
     it "Farm has function" do
       expect(Farm::Function).not_to be nil
+    end
+
+    it "Farm has a life condition" do
+      expect(@functions.life_conditions).to eq("healthy")
     end
   end
 end

@@ -7,5 +7,9 @@ module Farm
       @cares = cares
       @reproduction = reproduction
     end
+
+    def to_s
+      "Life Conditions: #{@life_conditions}\nCares: #{@cares}\nReproduction: #{@reproduction}"
+    end
   end
 end

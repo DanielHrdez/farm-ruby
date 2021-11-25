@@ -8,5 +8,9 @@ module Farm
 			@type = type
 			@description = description
     end
+
+    def to_s
+      "ID: #{@id}\nName: #{@name}\nType: #{@type}\nDescription: #{@description}"
+    end
   end
 end

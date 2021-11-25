@@ -29,6 +29,10 @@ RSpec.describe Farm do
     it "Farm has a description" do
       expect(@data.description).to eq("La Granja de Juan es una granja de vacas")
     end
+
+    it "The Data of Farm have a to_s method" do
+      expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType: Granja de vacas\nDescription: La Granja de Juan es una granja de vacas")
+    end
   end
 
   describe Farm::Function do
@@ -50,6 +54,10 @@ RSpec.describe Farm do
 
     it "Farm has a reproduction" do
       expect(@functions.reproduction).to eq("the animals reproducted like expected")
+    end
+
+    it "The Functions of Farm has a to_s method" do
+      expect(@functions.to_s).to eq("Life Conditions: healthy\nCares: good quality cares\nReproduction: the animals reproducted like expected")
     end
   end
 end

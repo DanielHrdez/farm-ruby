@@ -33,7 +33,7 @@ RSpec.describe Farm do
 
   describe Farm::Function do
     before :each do
-      @functions = Farm::Function.new("healthy")
+      @functions = Farm::Function.new("healthy", "good quality cares")
     end
 
     it "Farm has function" do
@@ -42,6 +42,10 @@ RSpec.describe Farm do
 
     it "Farm has a life condition" do
       expect(@functions.life_conditions).to eq("healthy")
+    end
+
+    it "Farm has a care" do
+      expect(@functions.cares).to eq("good quality cares")
     end
   end
 end

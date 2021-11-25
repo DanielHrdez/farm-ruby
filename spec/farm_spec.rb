@@ -5,7 +5,8 @@ RSpec.describe Farm do
     expect(Farm::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(true).to eq(true)
-  end
+  describe Farm::Data do
+    it "has data" do
+      expect(Farm::Data.new).no_to be nil
+    end
 end

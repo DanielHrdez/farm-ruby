@@ -1,9 +1,10 @@
 module Farm
   class Data
-		attr_accessor :id
+		attr_accessor :id, :name
 
-    def initialize(id)
+    def initialize(id, name)
       @id = id
+			@name = name
     end
   end
 end

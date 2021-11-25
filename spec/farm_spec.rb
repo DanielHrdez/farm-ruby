@@ -7,7 +7,7 @@ RSpec.describe Farm do
 
   describe Farm::Data do
     before :each do
-      @data = Farm::Data.new(1)
+      @data = Farm::Data.new(1, "Granja de prueba")
     end
 
     it "Farm has data" do
@@ -16,6 +16,10 @@ RSpec.describe Farm do
 
     it "Data has an id" do
       expect(@data.id).to eq(1)
+    end
+
+    it "Data has a name" do
+      expect(@data.name).to eq("Granja de prueba")
     end
   end
 end

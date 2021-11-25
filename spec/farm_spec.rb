@@ -7,6 +7,7 @@ RSpec.describe Farm do
 
   describe Farm::Data do
     it "has data" do
-      expect(Farm::Data.new).no_to be nil
+      expect(Farm::Data.new).not_to be nil
     end
+  end
 end

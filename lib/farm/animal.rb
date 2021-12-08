@@ -1,12 +1,16 @@
 module Farm
   class Animal
-    attr_accessor :name, :age, :sex, :weight
+    attr_accessor :id, :age, :genre, :weight
 
-    def initialize(name = 0, age = 0, sex = nil, weight = 0)
-      @name = name
+    def initialize(id = 0, age = 0, genre = nil, weight = 0)
+      @id = id
       @age = age
-      @sex = sex
+      @genre = genre
       @weight = weight
+    end
+
+    def to_s
+      "ID: #{@id}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}"
     end
   end
 end

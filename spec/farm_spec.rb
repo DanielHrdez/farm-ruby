@@ -5,6 +5,14 @@ RSpec.describe Farm do
     expect(Farm::VERSION).not_to be nil
   end
 
+  describe "Representation of a Animal - Farm::Animal" do
+    context "Atributes of the class Animal" do
+      it "Has a class to represent animals" do
+        expect(Farm::Animal).not_to be nil
+      end
+    end
+  end
+
   describe Farm::Data do
     context '# Data & ID of the Farm' do
     before :each do

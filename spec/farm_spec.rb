@@ -84,6 +84,10 @@ RSpec.describe Farm do
       it "Has a attribute for the type of feeding (herbivorous, omnivore)" do
         expect(@livestock.feed).not_to eq("Herbivorous")
       end
+
+      it "A string is obtained with the information of the livestock correctly formatted" do
+        expect(@livestock.to_s).not_to eq("")
+      end
     end
   end
 

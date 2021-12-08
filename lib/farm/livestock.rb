@@ -8,5 +8,9 @@ module Farm
       @exploit = exploit
       @feed = feed
     end
+
+    def to_s
+      "Livestock: #{@name} (#{@breed}), #{@exploit}, #{@feed}"
+    end
   end
 end

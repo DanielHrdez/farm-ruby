@@ -12,7 +12,11 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute to identify the animal" do
-        expect(Farm::Animal.new(1).id).to eq(1)
+        expect(Farm::Animal.new("vaca").name).to eq("vaca")
+      end
+
+      it "Has a attribute with the age of the animal" do
+        expect(Farm::Animal.new("vaca", 2).age).to eq(2)
       end
     end
   end

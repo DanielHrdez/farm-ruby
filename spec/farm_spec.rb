@@ -160,6 +160,10 @@ RSpec.describe Farm do
       it "An instance of the Data class is expected to be an Object" do
         expect(@data).to be_a(Object)
       end
+
+      it "An instance of the Data class is expected to be an BasicObject" do
+        expect(@data).to be_a(BasicObject)
+      end
     end
   end
 

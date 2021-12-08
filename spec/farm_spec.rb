@@ -8,7 +8,7 @@ RSpec.describe Farm do
   describe "Representation of a Animal - Farm::Animal" do
     context "Atributes of the class Animal" do
       before :each do
-        @animal = Farm::Animal.new("Vaca", "2", "Hembra")
+        @animal = Farm::Animal.new("Vaca", 10234, "Hembra", 200000)
       end
 
       it "Has a class to represent animals" do
@@ -19,12 +19,16 @@ RSpec.describe Farm do
         expect(@animal.name).to eq("Vaca")
       end
 
-      it "Has a attribute with the age of the animal" do
-        expect(@animal.age).to eq("2")
+      it "Has a attribute with the age of the animal in days" do
+        expect(@animal.age).to eq(10234)
       end
 
       it "Has a attribute with the sex of the animal" do
         expect(@animal.sex).to eq("Hembra")
+      end
+
+      it "Has a attribute with the weight of the animal in grams" do
+        expect(@animal.weight).to eq(200000)
       end
     end
   end

@@ -152,9 +152,13 @@ RSpec.describe Farm do
       before :each do
         @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
       end
-      
+
       it "An instance of the Data class is expected to be an Data" do
         expect(@data).to be_a(Farm::Data)
+      end
+
+      it "An instance of the Data class is expected to be an Object" do
+        expect(@data).to be_a(Object)
       end
     end
   end

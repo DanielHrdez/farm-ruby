@@ -202,6 +202,10 @@ RSpec.describe Farm do
       it "Is expected to be an Object" do
         expect(@function).to be_a(Object)
       end
+
+      it "Is expected to be an BasicObject" do
+        expect(@function).to be_a(BasicObject)
+      end
     end
   end
 end

@@ -56,6 +56,10 @@ RSpec.describe Farm do
       it "An instance of the Animal class is not expected to be a String" do
         expect(@animal).not_to be_a(String)
       end
+
+      it "An instance of the Animal class is not expected to be a Number" do
+        expect(@animal).not_to be_a(Numeric)
+      end
     end
   end
 

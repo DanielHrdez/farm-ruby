@@ -192,6 +192,10 @@ RSpec.describe Farm do
       it "Exist a process to set the cares of the animals" do
         expect(@function.set_cares).not_to be nil
       end
+
+      it "Exist a process to set the reproduction of the animals" do
+        expect(@function.set_repro).not_to be nil
+      end
     end
 
     context "Inheritance of the module Function" do

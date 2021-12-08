@@ -16,5 +16,9 @@ module Farm
     def to_s
       "Name: #{@name}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}"
     end
+
+    def <=>(other)
+      self.weight <=> other.weight
+    end
   end
 end

@@ -89,6 +89,16 @@ RSpec.describe Farm do
         expect(@livestock.to_s).not_to eq("")
       end
     end
+
+    context "Inheritance of the class Livestock" do
+      before :each do
+        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
+      end
+
+      it "An instance of the Livestock class is expected to be an Livestock" do
+        expect(@livestock).to be_a(Farm::Livestock)
+      end
+    end
   end
 
   describe Farm::Data do

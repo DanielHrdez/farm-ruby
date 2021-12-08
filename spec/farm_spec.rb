@@ -48,6 +48,10 @@ RSpec.describe Farm do
       it "An instance of the Animal class is expected to be an Object" do
         expect(@animal).to be_a(Object)
       end
+
+      it "An instance of the Animal class is expected to be an BasicObject" do
+        expect(@animal).to be_a(BasicObject)
+      end
     end
   end
 

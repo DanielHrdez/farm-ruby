@@ -98,6 +98,10 @@ RSpec.describe Farm do
       it "An instance of the Livestock class is expected to be an Livestock" do
         expect(@livestock).to be_a(Farm::Livestock)
       end
+
+      it "An instance of the Livestock class is expected to be an Animal" do
+        expect(@livestock).to be_a(Farm::Animal)
+      end
     end
   end
 

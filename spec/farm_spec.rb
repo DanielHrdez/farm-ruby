@@ -210,6 +210,10 @@ RSpec.describe Farm do
       it "Is not expected to be a String" do
         expect(@function).not_to be_a(String)
       end
+
+      it "Is not expected to be a Number" do
+        expect(@function).not_to be_a(Numeric)
+      end
     end
   end
 end

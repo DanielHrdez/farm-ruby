@@ -188,6 +188,16 @@ RSpec.describe Farm do
       it "Exist a constant to represent the life conditions (open field, barn)" do
         expect(@function::LIFE_CONDITIONS).not_to be nil
       end
-    end 
+    end
+
+    context "Inheritance of the module Function" do
+      before :each do
+        @function = Farm::Function
+      end
+
+      it "Is expected to be a Module" do
+        expect(@function).to be_a(Module)
+      end
+    end
   end
 end

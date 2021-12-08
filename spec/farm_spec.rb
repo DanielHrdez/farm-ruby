@@ -175,36 +175,10 @@ RSpec.describe Farm do
     end
   end
 
-  describe Farm::Function do
-    context '# Function & Life Condition of the Farm' do
-      before :each do
-        @functions = Farm::Function.new("healthy")
-      end
-
-      it "Farm has function" do
+  describe "Interface of the functionalities - Farm::Function" do
+    context 'Components of the module Function' do
+      it "Exist a module to store the functionalities" do
         expect(Farm::Function).not_to be nil
-      end
-
-      it "Farm has a life condition" do
-        expect(@functions.life_conditions).to eq("healthy")
-      end
-    end
-
-    context '# Cares, Reproduction and to_s method of the Farm' do
-      before :each do
-        @functions = Farm::Function.new("healthy", "good quality cares", "the animals reproducted like expected")
-      end
-
-      it "Farm has a care" do
-        expect(@functions.cares).to eq("good quality cares")
-      end
-
-      it "Farm has a reproduction" do
-        expect(@functions.reproduction).to eq("the animals reproducted like expected")
-      end
-
-      it "The Functions of Farm has a to_s method" do
-        expect(@functions.to_s).to eq("Life Conditions: healthy\nCares: good quality cares\nReproduction: the animals reproducted like expected")
       end
     end 
   end

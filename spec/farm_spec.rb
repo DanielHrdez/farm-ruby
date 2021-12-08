@@ -121,46 +121,30 @@ RSpec.describe Farm do
     end
   end
 
-  describe Farm::Data do
-    context '# Data & ID of the Farm' do
-    before :each do
-      @data = Farm::Data.new(1)
-    end
-    
-      it "Farm has data" do
-        expect(@data).not_to be nil
+  describe "Representation of the Data of a Farm - Farm::Data" do
+    context "Atributes of the class Data" do
+      before :each do
+        @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
       end
 
-      it "Farm has an id" do
+      it "Has an attribute to identify the farm" do
         expect(@data.id).to eq(1)
       end
-    end
 
-    context '# Name & Type of the Farm' do
-      before :each do
-        @data = Farm::Data.new(1, "La Granja de Juan", "Granja de vacas")
-      end
-
-      it "Farm has a name" do
+      it "Has an attribute for the name of the farm" do
         expect(@data.name).to eq("La Granja de Juan")
       end
 
-      it "Farm has a type" do
-        expect(@data.type).to eq("Granja de vacas")
-      end
-    end 
-
-    context '# Description & to_s method of the Farm' do
-      before :each do
-        @data = Farm::Data.new(1, "La Granja de Juan", "Granja de vacas", "La Granja de Juan es una granja de vacas")
+      it "Has an attribute for the type of the farm (poultry, livestock)" do
+        expect(@data.type).to eq("Ganadera")
       end
 
-      it "Farm has a description" do
-        expect(@data.description).to eq("La Granja de Juan es una granja de vacas")
+      it "Has an attribute for the description of the farm" do
+        expect(@data.description).to eq("La Granja de Juan es Ganadera")
       end
 
-      it "The Data of Farm have a to_s method" do
-        expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType: Granja de vacas\nDescription: La Granja de Juan es una granja de vacas")
+      it "A string is obtained with the information of the farm correctly formatted" do
+        expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera")
       end
     end
   end

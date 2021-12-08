@@ -177,8 +177,16 @@ RSpec.describe Farm do
 
   describe "Interface of the functionalities - Farm::Function" do
     context 'Components of the module Function' do
+      before :each do
+        @function = Farm::Function
+      end
+
       it "Exist a module to store the functionalities" do
-        expect(Farm::Function).not_to be nil
+        expect(@function).not_to be nil
+      end
+
+      it "Exist a constant to represent the life conditions (open field, barn)" do
+        expect(@function::LIFE_CONDITIONS).not_to be nil
       end
     end 
   end

@@ -35,6 +35,12 @@ RSpec.describe Farm do
         expect(@animal.to_s).not_to eq("")
       end
     end
+
+    context "Inheritance of the class Animal" do
+      it "An instance of the Animal class is expected to be an Animal" do
+        expect(Farm::Animal.new(1, 10234, "Hembra", 200000)).to be_a(Farm::Animal)
+      end
+    end
   end
 
   describe Farm::Data do

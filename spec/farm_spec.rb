@@ -198,6 +198,10 @@ RSpec.describe Farm do
       it "Is expected to be a Module" do
         expect(@function).to be_a(Module)
       end
+
+      it "Is expected to be an Object" do
+        expect(@function).to be_a(Object)
+      end
     end
   end
 end

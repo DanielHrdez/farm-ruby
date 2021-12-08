@@ -16,7 +16,7 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute to identify the animal" do
-        expect(@animal.id).to eq(1)
+        expect(@animal.name).to eq(1)
       end
 
       it "Has a attribute with the age of the animal in days" do
@@ -66,15 +66,19 @@ RSpec.describe Farm do
   describe "Representation of a Head of Livestock - Farm::Livestock" do
     context "Atributes of the class Livestock" do
       before :each do
-        @livestock = Farm::Livestock.new("Pork", "Porcine")
+        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat")
       end
 
       it "Has a class to represent livestock" do
         expect(@livestock).not_to be nil
       end
 
-      it "Has a attribute for the breed" do
-        expect(@livestock.breed).to eq("porcine")
+      it "Has a attribute for the breed (bovine, porcine, ovine, goat)" do
+        expect(@livestock.breed).to eq("Porcine")
+      end
+
+      it "Has a attribute for the type of exploitation (meat, skin, milk)" do
+        expect(@livestock.exploit).to eq("Meat")
       end
     end
   end

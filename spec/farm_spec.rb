@@ -110,6 +110,10 @@ RSpec.describe Farm do
       it "An instance of the Livestock class is expected to be an BasicObject" do
         expect(@livestock).to be_a(BasicObject)
       end
+
+      it "An instance of the Livestock class is not expected to be a String" do
+        expect(@livestock).not_to be_a(String)
+      end
     end
   end
 

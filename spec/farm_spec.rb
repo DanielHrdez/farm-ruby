@@ -10,6 +10,10 @@ RSpec.describe Farm do
       it "Has a class to represent animals" do
         expect(Farm::Animal).not_to be nil
       end
+
+      it "Has a attribute to identify the animal" do
+        expect(Farm::Animal.new(1).id).to eq(1)
+      end
     end
   end
 

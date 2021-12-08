@@ -63,6 +63,18 @@ RSpec.describe Farm do
     end
   end
 
+  describe "Representation of a Head of Livestock - Farm::Livestock" do
+    context "Atributes of the class Livestock" do
+      before :each do
+        @livestock = Farm::Livestock.new
+      end
+
+      it "Has a class to represent livestock" do
+        expect(@livestock).not_to be nil
+      end
+    end
+  end
+
   describe Farm::Data do
     context '# Data & ID of the Farm' do
     before :each do

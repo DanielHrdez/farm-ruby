@@ -38,7 +38,7 @@ RSpec.describe Farm do
 
     context "Inheritance of the class Animal" do
       before :each do
-        @animal = Farm::Animal.new(1, 10234, "Hembra", 200000)
+        @animal = Farm::Animal.new("Vaca", 10234, "Hembra", 200000)
       end
 
       it "An instance of the Animal class is expected to be an Animal" do
@@ -66,11 +66,15 @@ RSpec.describe Farm do
   describe "Representation of a Head of Livestock - Farm::Livestock" do
     context "Atributes of the class Livestock" do
       before :each do
-        @livestock = Farm::Livestock.new
+        @livestock = Farm::Livestock.new("Pork", "Porcine")
       end
 
       it "Has a class to represent livestock" do
         expect(@livestock).not_to be nil
+      end
+
+      it "Has a attribute for the breed" do
+        expect(@livestock.breed).to eq("porcine")
       end
     end
   end

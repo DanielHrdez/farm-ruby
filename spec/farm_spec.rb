@@ -66,7 +66,7 @@ RSpec.describe Farm do
   describe "Representation of a Head of Livestock - Farm::Livestock" do
     context "Atributes of the class Livestock" do
       before :each do
-        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat")
+        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
       end
 
       it "Has a class to represent livestock" do
@@ -79,6 +79,10 @@ RSpec.describe Farm do
 
       it "Has a attribute for the type of exploitation (meat, skin, milk)" do
         expect(@livestock.exploit).to eq("Meat")
+      end
+
+      it "Has a attribute for the type of feeding (herbivorous, omnivore)" do
+        expect(@livestock.feed).not_to eq("Herbivorous")
       end
     end
   end

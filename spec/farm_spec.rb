@@ -147,6 +147,16 @@ RSpec.describe Farm do
         expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera")
       end
     end
+
+    context "Inheritance of the class Data" do
+      before :each do
+        @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
+      end
+      
+      it "An instance of the Data class is expected to be an Data" do
+        expect(@data).to be_a(Farm::Data)
+      end
+    end
   end
 
   describe Farm::Function do

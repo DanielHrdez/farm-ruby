@@ -12,5 +12,9 @@ module Farm
     def to_s
       "Livestock: #{@name} (#{@breed}), #{@exploit}, #{@feed}"
     end
+
+    def <=>(other)
+      self.age <=> other.age
+    end
   end
 end

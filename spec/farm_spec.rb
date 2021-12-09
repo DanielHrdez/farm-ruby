@@ -6,69 +6,74 @@ RSpec.describe Farm do
   end
 
   describe "Representation of a Animal - Farm::Animal" do
-    context "Atributes of the class Animal" do
-      before :each do
-        @animal = Farm::Animal.new(1, 10234, "Hembra", 200000)
-      end
+    before :all do
+      @vaca = Farm::Animal.new("Vaca", 10234, "Hembra", 200000)
+    end
 
+    context "Atributes of the class Animal" do
       it "Has a class to represent animals" do
-        expect(@animal).not_to be nil
+        expect(@vaca).not_to be nil
       end
 
       it "Has a attribute to identify the animal" do
-        expect(@animal.name).to eq(1)
+        expect(@vaca.name).to eq("Vaca")
       end
 
       it "Has a attribute with the age of the animal in days" do
-        expect(@animal.age).to eq(10234)
+        expect(@vaca.age).to eq(10234)
       end
 
       it "Has a attribute with the sex of the animal" do
-        expect(@animal.genre).to eq("Hembra")
+        expect(@vaca.genre).to eq("Hembra")
       end
 
       it "Has a attribute with the weight of the animal in grams" do
-        expect(@animal.weight).to eq(200000)
+        expect(@vaca.weight).to eq(200000)
       end
 
       it "A string is obtained with the information of the animal correctly formatted" do
-        expect(@animal.to_s).not_to eq("")
+        expect(@vaca.to_s).not_to eq("")
+      end
+
+      it "A number is obtained with the information of the number of animals in the farm" do
+        expect(Farm::Animal.count).not_to eq(0)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        @toro = Farm::Animal.new("Toro", 5235, "Macho", 102190)
+        expect(@vaca <=> @toro).to eq(1)
       end
     end
 
     context "Inheritance of the class Animal" do
-      before :each do
-        @animal = Farm::Animal.new("Vaca", 10234, "Hembra", 200000)
-      end
-
       it "An instance of the Animal class is expected to be an Animal" do
-        expect(@animal).to be_a(Farm::Animal)
+        expect(@vaca).to be_a(Farm::Animal)
       end
 
       it "An instance of the Animal class is expected to be an Object" do
-        expect(@animal).to be_a(Object)
+        expect(@vaca).to be_a(Object)
       end
 
       it "An instance of the Animal class is expected to be an BasicObject" do
-        expect(@animal).to be_a(BasicObject)
+        expect(@vaca).to be_a(BasicObject)
       end
 
       it "An instance of the Animal class is not expected to be a String" do
-        expect(@animal).not_to be_a(String)
+        expect(@vaca).not_to be_a(String)
       end
 
       it "An instance of the Animal class is not expected to be a Number" do
-        expect(@animal).not_to be_a(Numeric)
+        expect(@vaca).not_to be_a(Numeric)
       end
     end
   end
 
   describe "Representation of a Head of Livestock - Farm::Livestock" do
-    context "Atributes of the class Livestock" do
-      before :each do
-        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
-      end
+    before :all do
+      @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
+    end
 
+    context "Atributes of the class Livestock" do
       it "Has a class to represent livestock" do
         expect(@livestock).not_to be nil
       end
@@ -91,10 +96,6 @@ RSpec.describe Farm do
     end
 
     context "Inheritance of the class Livestock" do
-      before :each do
-        @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
-      end
-
       it "An instance of the Livestock class is expected to be an Livestock" do
         expect(@livestock).to be_a(Farm::Livestock)
       end
@@ -122,11 +123,11 @@ RSpec.describe Farm do
   end
 
   describe "Representation of the Data of a Farm - Farm::Data" do
-    context "Atributes of the class Data" do
-      before :each do
-        @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
-      end
+    before :all do
+      @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
+    end
 
+    context "Atributes of the class Data" do
       it "Has an attribute to identify the farm" do
         expect(@data.id).to eq(1)
       end
@@ -149,10 +150,6 @@ RSpec.describe Farm do
     end
 
     context "Inheritance of the class Data" do
-      before :each do
-        @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
-      end
-
       it "An instance of the Data class is expected to be an Data" do
         expect(@data).to be_a(Farm::Data)
       end
@@ -176,11 +173,11 @@ RSpec.describe Farm do
   end
 
   describe "Interface of the functionalities - Farm::Function" do
-    context 'Components of the module Function' do
-      before :each do
-        @function = Farm::Function
-      end
+    before :all do
+      @function = Farm::Function
+    end
 
+    context 'Components of the module Function' do
       it "Exist a module to store the functionalities" do
         expect(@function).not_to be nil
       end
@@ -190,19 +187,15 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to set the cares of the animals" do
-        expect(@function.set_cares).not_to be nil
+        expect(@function.cares).not_to be nil
       end
 
       it "Exist a process to set the reproduction of the animals" do
-        expect(@function.set_repro).not_to be nil
+        expect(@function.repro).not_to be nil
       end
     end
 
     context "Inheritance of the module Function" do
-      before :each do
-        @function = Farm::Function
-      end
-
       it "Is expected to be a Module" do
         expect(@function).to be_a(Module)
       end

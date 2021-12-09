@@ -1,14 +1,13 @@
 module Farm
   module Function
-    CARES = REPRO = ""
-    LIFE_CONDITIONS = CARES + REPRO
+    LIFE_CONDITIONS = ["Open Field", "Barn"]
 
-    def self.set_cares
-      CARES
+    def self.cares
+      "Feeding, Watering and Weeding"
     end
 
-    def self.set_repro
-      REPRO
+    def self.repro
+      "All species mate correctly"
     end
   end
 end

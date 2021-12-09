@@ -1,8 +1,8 @@
 module Farm
   class Animal
-    attr_accessor :name, :age, :genre, :weight
+    include Comparable
 
-    @@count = 0
+    attr_accessor :name, :age, :genre, :weight
 
     def initialize(name = 0, age = 0, genre = nil, weight = 0)
       @name = name
@@ -10,11 +10,19 @@ module Farm
       @genre = genre
       @weight = weight
 
-      @@count += 1
+      if defined?(@@count)
+        @@count += 1
+      else
+        @@count = 1
+      end
     end
 
     def to_s
-      "Name: #{@name}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}"
+      "Name: #{@name}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}\nCount: #{@@count}"
+    end
+
+    def self.count
+      @@count
     end
 
     def <=>(other)

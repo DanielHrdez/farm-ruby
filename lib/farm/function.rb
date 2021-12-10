@@ -1,5 +1,8 @@
 module Farm
   module Function
+    CAMPO = :campo
+    ESTABLO = :establo
+
     LIFE_CONDITIONS = ["Open Field", "Barn"]
 
     def self.cares

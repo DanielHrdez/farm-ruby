@@ -39,9 +39,24 @@ RSpec.describe Farm do
         expect(Farm::Animal.count).not_to eq(0)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      before :all do
         @toro = Farm::Animal.new("Toro", 5235, "Macho", 102190)
+      end
+
+      it "The animals of the farm can be compared by weight" do
         expect(@vaca <=> @toro).to eq(1)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@vaca < @toro).to eq(false)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@vaca > @toro).to eq(true)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@vaca == @toro).to eq(false)
       end
     end
 
@@ -70,54 +85,78 @@ RSpec.describe Farm do
 
   describe "Representation of a Head of Livestock - Farm::Livestock" do
     before :all do
-      @livestock = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
+      @pork = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
     end
 
     context "Atributes of the class Livestock" do
       it "Has a class to represent livestock" do
-        expect(@livestock).not_to be nil
+        expect(@pork).not_to be nil
       end
 
       it "Has a attribute for the breed (bovine, porcine, ovine, goat)" do
-        expect(@livestock.breed).to eq("Porcine")
+        expect(@pork.breed).to eq("Porcine")
       end
 
       it "Has a attribute for the type of exploitation (meat, skin, milk)" do
-        expect(@livestock.exploit).to eq("Meat")
+        expect(@pork.exploit).to eq("Meat")
       end
 
       it "Has a attribute for the type of feeding (herbivorous, omnivore)" do
-        expect(@livestock.feed).not_to eq("Herbivorous")
+        expect(@pork.feed).not_to eq("Herbivorous")
       end
 
       it "A string is obtained with the information of the livestock correctly formatted" do
-        expect(@livestock.to_s).not_to eq("")
+        expect(@pork.to_s).not_to eq("")
+      end
+
+      it "A number is obtained with the information of the number of animals in the farm" do
+        expect(Farm::Livestock.count).not_to eq(0)
+      end
+
+      before :all do
+        @dog = Farm::Livestock.new("Perro", "Bovine", "Meat", "Omnivore")
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@pork <=> @dog).to eq(0)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@pork < @dog).to eq(false)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@pork > @dog).to eq(false)
+      end
+
+      it "The animals of the farm can be compared by weight" do
+        expect(@pork == @dog).to eq(true)
       end
     end
 
     context "Inheritance of the class Livestock" do
       it "An instance of the Livestock class is expected to be an Livestock" do
-        expect(@livestock).to be_a(Farm::Livestock)
+        expect(@pork).to be_a(Farm::Livestock)
       end
 
       it "An instance of the Livestock class is expected to be an Animal" do
-        expect(@livestock).to be_a(Farm::Animal)
+        expect(@pork).to be_a(Farm::Animal)
       end
 
       it "An instance of the Livestock class is expected to be an Object" do
-        expect(@livestock).to be_a(Object)
+        expect(@pork).to be_a(Object)
       end
 
       it "An instance of the Livestock class is expected to be an BasicObject" do
-        expect(@livestock).to be_a(BasicObject)
+        expect(@pork).to be_a(BasicObject)
       end
 
       it "An instance of the Livestock class is not expected to be a String" do
-        expect(@livestock).not_to be_a(String)
+        expect(@pork).not_to be_a(String)
       end
 
       it "An instance of the Livestock class is not expected to be a Number" do
-        expect(@livestock).not_to be_a(Numeric)
+        expect(@pork).not_to be_a(Numeric)
       end
     end
   end
@@ -173,47 +212,43 @@ RSpec.describe Farm do
   end
 
   describe "Interface of the functionalities - Farm::Function" do
-    before :all do
-      @function = Farm::Function
-    end
-
     context 'Components of the module Function' do
       it "Exist a module to store the functionalities" do
-        expect(@function).not_to be nil
+        expect(Farm::Function).not_to be nil
       end
 
       it "Exist a constant to represent the life conditions (open field, barn)" do
-        expect(@function::LIFE_CONDITIONS).not_to be nil
+        expect(Farm::Function::LIFE_CONDITIONS).not_to be nil
       end
 
       it "Exist a process to set the cares of the animals" do
-        expect(@function.cares).not_to be nil
+        expect(Farm::Function.cares).not_to be nil
       end
 
       it "Exist a process to set the reproduction of the animals" do
-        expect(@function.repro).not_to be nil
+        expect(Farm::Function.repro).not_to be nil
       end
     end
 
     context "Inheritance of the module Function" do
       it "Is expected to be a Module" do
-        expect(@function).to be_a(Module)
+        expect(Farm::Function).to be_a(Module)
       end
 
       it "Is expected to be an Object" do
-        expect(@function).to be_a(Object)
+        expect(Farm::Function).to be_a(Object)
       end
 
       it "Is expected to be an BasicObject" do
-        expect(@function).to be_a(BasicObject)
+        expect(Farm::Function).to be_a(BasicObject)
       end
 
       it "Is not expected to be a String" do
-        expect(@function).not_to be_a(String)
+        expect(Farm::Function).not_to be_a(String)
       end
 
       it "Is not expected to be a Number" do
-        expect(@function).not_to be_a(Numeric)
+        expect(Farm::Function).not_to be_a(Numeric)
       end
     end
   end

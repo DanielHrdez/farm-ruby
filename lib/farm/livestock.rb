@@ -1,5 +1,7 @@
 module Farm
   class Livestock < Animal
+    include Comparable
+
     attr_accessor :breed, :exploit, :feed
 
     def initialize(name = "", breed = "", exploit = "", feed = "")
@@ -15,6 +17,12 @@ module Farm
 
     def <=>(other)
       self.age <=> other.age
+    end
+
+    def ==(other)
+      self.breed == other.breed
+      self.exploit == other.exploit
+      self.feed == other.feed
     end
   end
 end

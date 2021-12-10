@@ -28,5 +28,12 @@ module Farm
     def <=>(other)
       self.weight <=> other.weight
     end
+
+    def ==(other)
+      self.name == other.name
+      self.age == other.name
+      self.genre == other.genre
+      self.weight == other.weight
+    end
   end
 end

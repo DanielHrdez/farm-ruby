@@ -58,6 +58,11 @@ RSpec.describe Farm do
       it "The animals of the farm can be compared by weight with ==" do
         expect(@vaca == @toro).to eq(false)
       end
+
+      it "The animals of the farm can be compared by weight with between" do
+        @pajaro = Farm::Animal.new("Pajaro", 12312, "Macho", 1233)
+        expect(@vaca.between?(@toro, @pajaro)).to eq(false)
+      end
     end
 
     context "Inheritance of the class Animal" do
@@ -131,6 +136,11 @@ RSpec.describe Farm do
 
       it "The livestock of the farm can be compared by weight with ==" do
         expect(@pork == @dog).to eq(true)
+      end
+
+      it "The animals of the farm can be compared by weight with between" do
+        @cat = Farm::Livestock.new("Gato", 12312, "Macho", 1233)
+        expect(@pork.between?(@dog, @cat)).to eq(true)
       end
     end
 

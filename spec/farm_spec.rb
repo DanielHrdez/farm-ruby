@@ -43,19 +43,19 @@ RSpec.describe Farm do
         @toro = Farm::Animal.new("Toro", 5235, "Macho", 102190)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The animals of the farm can be compared by weight with <=>" do
         expect(@vaca <=> @toro).to eq(1)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The animals of the farm can be compared by weight with <" do
         expect(@vaca < @toro).to eq(false)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The animals of the farm can be compared by weight with >" do
         expect(@vaca > @toro).to eq(true)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The animals of the farm can be compared by weight with ==" do
         expect(@vaca == @toro).to eq(false)
       end
     end
@@ -109,7 +109,7 @@ RSpec.describe Farm do
         expect(@pork.to_s).not_to eq("")
       end
 
-      it "A number is obtained with the information of the number of animals in the farm" do
+      it "A number is obtained with the information of the number of livestock in the farm" do
         expect(Farm::Livestock.count).not_to eq(0)
       end
 
@@ -117,19 +117,19 @@ RSpec.describe Farm do
         @dog = Farm::Livestock.new("Perro", "Bovine", "Meat", "Omnivore")
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The livestock of the farm can be compared by weight with <=>" do
         expect(@pork <=> @dog).to eq(0)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The livestock of the farm can be compared by weight with <" do
         expect(@pork < @dog).to eq(false)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The livestock of the farm can be compared by weight with >" do
         expect(@pork > @dog).to eq(false)
       end
 
-      it "The animals of the farm can be compared by weight" do
+      it "The livestock of the farm can be compared by weight with ==" do
         expect(@pork == @dog).to eq(true)
       end
     end

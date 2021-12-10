@@ -138,7 +138,7 @@ RSpec.describe Farm do
         expect(@pork == @dog).to eq(true)
       end
 
-      it "The animals of the farm can be compared by weight with between" do
+      it "The livestock of the farm can be compared by weight with between" do
         @cat = Farm::Livestock.new("Gato", 12312, "Macho", 1233)
         expect(@pork.between?(@dog, @cat)).to eq(true)
       end

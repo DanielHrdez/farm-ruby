@@ -20,8 +20,9 @@ module Farm
     end
 
     def ==(other)
-      self.breed == other.breed
-      self.exploit == other.exploit
+      super == other &&
+      self.breed == other.breed &&
+      self.exploit == other.exploit &&
       self.feed == other.feed
     end
   end

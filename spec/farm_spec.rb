@@ -24,7 +24,7 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute with the sex of the animal" do
-        expect(@vaca.genre).to eq(:Hembra)
+        expect(@vaca.gender).to eq(:Hembra)
       end
 
       it "Has a attribute with the weight of the animal in grams" do
@@ -135,7 +135,7 @@ RSpec.describe Farm do
       end
 
       it "The livestock of the farm can be compared by weight with ==" do
-        expect(@pork == @dog).to eq(true)
+        expect(@pork == @dog).to eq(false)
       end
 
       it "The livestock of the farm can be compared by weight with between" do
@@ -266,10 +266,10 @@ RSpec.describe Farm do
   describe "Representation of the Farm - Farm::Cattle" do
     before :all do
       @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
-      @pajaro = Farm::Animal.new(3, 12312, :Macho, 123.3)
+      @vaca = Farm::Animal.new(3, 12312, :Macho, 123.3)
       @cattle = Farm::Cattle.new(
                               @data, :Bovine, :Milk, 
-                              0, 0.0, 0.0, [@pajaro]
+                              0, 0.0, 0.0, [@vaca]
                               )
     end
 
@@ -326,6 +326,13 @@ RSpec.describe Farm do
 
       it "Has an attribute to store the animals" do
         expect(@cattle.animals).not_to be nil
+      end
+
+      it "A string is obtained with the information of the farm correctly formatted" do
+        expect(@cattle.to_s).to eq("ID: 1\n" + 
+        "Name: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera\n" + 
+        "Type: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\nSale Price: 0.0\n" +
+        "Animals:\nID: 3\nAge: 12312\nGender: Macho\nWeight: 123.3\n")
       end
     end
   end

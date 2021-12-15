@@ -8,8 +8,8 @@ module Farm
             price = 0.0, sale_price = 0.0, animals = [] 
             )
             @data = data
-            @destiny = destiny
             @type = type
+            @destiny = destiny
             @number = number
             @price = price
             @sale_price = sale_price
@@ -17,7 +17,9 @@ module Farm
         end
 
         def to_s
-            super + "\nDestiny: #{@destiny}\nType: #{@type}\nNumber: #{@number}\nPrice: #{@price}\nSale price: #{@sale_price}\nAnimals: #{@animals}"
+            @data.to_s + "\nType: #{@type}\nDestiny: #{@destiny}\nNumber: #{@number}\n" + 
+            "Price: #{@price}\nSale Price: #{@sale_price}\nAnimals:\n" + 
+            @animals.map { |animal| animal.to_s }.join("\n") + "\n"
         end
     end
 end

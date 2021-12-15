@@ -359,10 +359,14 @@ RSpec.describe Farm do
 
       it "Has a collect method to iterate over the animals and return a new array" do
         expect(@cattle.collect { |animal| animal.age > 12352 }).to eq [false, true]
+        expect(@cattle.collect { |animal| animal.age + 1 }).to eq [12313, 12399]
+        expect(@cattle.collect { |animal| animal.weight + 1 }).to eq [124.3, 324.3]
       end
 
       it "Has a select method to iterate over the animals and return a new array" do
         expect(@cattle.select { |animal| animal.weight > 300 }).to eq [@cabra]
+        expect(@cattle.select { |animal| animal.age < 12352 }).to eq [@vaca]
+        expect(@cattle.select { |animal| animal.id == 3 }).to eq [@vaca]
       end
     end
   end

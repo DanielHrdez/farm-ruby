@@ -7,7 +7,7 @@ RSpec.describe Farm do
 
   describe "Representation of a Animal - Farm::Animal" do
     before :all do
-      @vaca = Farm::Animal.new("Vaca", 10234, "Hembra", 200000)
+      @vaca = Farm::Animal.new(1, 10234, :Hembra, 20000.0)
     end
 
     context "Atributes of the class Animal" do
@@ -16,7 +16,7 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute to identify the animal" do
-        expect(@vaca.name).to eq("Vaca")
+        expect(@vaca.id).to eq(1)
       end
 
       it "Has a attribute with the age of the animal in days" do
@@ -24,11 +24,11 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute with the sex of the animal" do
-        expect(@vaca.genre).to eq("Hembra")
+        expect(@vaca.genre).to eq(:Hembra)
       end
 
       it "Has a attribute with the weight of the animal in grams" do
-        expect(@vaca.weight).to eq(200000)
+        expect(@vaca.weight).to eq(20000.0)
       end
 
       it "A string is obtained with the information of the animal correctly formatted" do
@@ -40,7 +40,7 @@ RSpec.describe Farm do
       end
 
       before :all do
-        @toro = Farm::Animal.new("Toro", 5235, "Macho", 102190)
+        @toro = Farm::Animal.new(2, 5235, :Macho, 10219.0)
       end
 
       it "The animals of the farm can be compared by weight with <=>" do
@@ -60,7 +60,7 @@ RSpec.describe Farm do
       end
 
       it "The animals of the farm can be compared by weight with between" do
-        @pajaro = Farm::Animal.new("Pajaro", 12312, "Macho", 1233)
+        @pajaro = Farm::Animal.new(3, 12312, :Macho, 123.3)
         expect(@vaca.between?(@toro, @pajaro)).to eq(false)
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe Farm do
 
   describe "Representation of a Head of Livestock - Farm::Livestock" do
     before :all do
-      @pork = Farm::Livestock.new("Pork", "Porcine", "Meat", "Omnivore")
+      @pork = Farm::Livestock.new(4, 1245, :Hembra, 456.76, :Porcine, :Meat, :Omnivore)
     end
 
     context "Atributes of the class Livestock" do
@@ -99,15 +99,15 @@ RSpec.describe Farm do
       end
 
       it "Has a attribute for the breed (bovine, porcine, ovine, goat)" do
-        expect(@pork.breed).to eq("Porcine")
+        expect(@pork.breed).to eq(:Porcine)
       end
 
       it "Has a attribute for the type of exploitation (meat, skin, milk)" do
-        expect(@pork.exploit).to eq("Meat")
+        expect(@pork.exploit).to eq(:Meat)
       end
 
       it "Has a attribute for the type of feeding (herbivorous, omnivore)" do
-        expect(@pork.feed).not_to eq("Herbivorous")
+        expect(@pork.feed).not_to eq(:Herbivorous)
       end
 
       it "A string is obtained with the information of the livestock correctly formatted" do
@@ -119,15 +119,15 @@ RSpec.describe Farm do
       end
 
       before :all do
-        @dog = Farm::Livestock.new("Perro", "Bovine", "Meat", "Omnivore")
+        @dog = Farm::Livestock.new(5, 134678, :Hembra, 9876.54, :Bovine, :Meat, :Omnivore)
       end
 
       it "The livestock of the farm can be compared by weight with <=>" do
-        expect(@pork <=> @dog).to eq(0)
+        expect(@pork <=> @dog).to eq(-1)
       end
 
       it "The livestock of the farm can be compared by weight with <" do
-        expect(@pork < @dog).to eq(false)
+        expect(@pork < @dog).to eq(true)
       end
 
       it "The livestock of the farm can be compared by weight with >" do
@@ -139,8 +139,8 @@ RSpec.describe Farm do
       end
 
       it "The livestock of the farm can be compared by weight with between" do
-        @cat = Farm::Livestock.new("Gato", 12312, "Macho", 1233)
-        expect(@pork.between?(@dog, @cat)).to eq(true)
+        @cat = Farm::Livestock.new(6, 65467, :Macho, 543435.67, :Bovine, :Meat, :Omnivore)
+        expect(@pork.between?(@dog, @cat)).to eq(false)
       end
     end
 

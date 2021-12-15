@@ -1,16 +1,16 @@
 module Farm 
     class Cattle < Data
-		attr_accessor :data, :destiny, :n_animals, :type,
+		attr_accessor :data, :destiny, :number, :type,
                     :price_animal, :sale_animal, :animals
 
         def initialize(
-            data = nil, type = "", destiny = "", n_animals = 0,
+            data = nil, type = "", destiny = "", number = 0,
             price_animal = 0, sale_animal = 0, animals = [] 
             )
             @data = data
             @destiny = destiny
             @type = type
-            @n_animals = n_animals
+            @number = number
             @price_animal = price_animal
             @sale_animal = sale_animal
             @animals = animals

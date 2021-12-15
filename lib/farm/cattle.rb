@@ -44,5 +44,9 @@ module Farm
         def collect
             @animals.collect { |animal| yield animal }
         end
+
+        def select
+            @animals.select { |animal| yield animal }
+        end
     end
 end

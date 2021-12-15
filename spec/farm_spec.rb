@@ -360,6 +360,10 @@ RSpec.describe Farm do
       it "Has a collect method to iterate over the animals and return a new array" do
         expect(@cattle.collect { |animal| animal }).to eq [@vaca, @cabra]
       end
+
+      it "Has a select method to iterate over the animals and return a new array" do
+        expect(@cattle.select { |animal| animal }).to eq [@vaca, @cabra]
+      end
     end
   end
 end

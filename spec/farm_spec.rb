@@ -266,9 +266,10 @@ RSpec.describe Farm do
   describe "Representation of the Farm - Farm::Cattle" do
     before :all do
       @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
+      @pajaro = Farm::Animal.new(3, 12312, :Macho, 123.3)
       @cattle = Farm::Cattle.new(
                               @data, :Bovine, :Milk, 
-                              0, 0.0, 0.0
+                              0, 0.0, 0.0, [@pajaro]
                               )
     end
 
@@ -321,6 +322,10 @@ RSpec.describe Farm do
 
       it "Has an attribute for the unitary sale price of the animals" do
         expect(@cattle.sale_price).to eq(0)
+      end
+
+      it "Has an attribute to store the animals" do
+        expect(@cattle.animals).not_to be nil
       end
     end
   end

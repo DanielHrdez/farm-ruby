@@ -4,8 +4,8 @@ module Farm
 
     attr_accessor :name, :age, :genre, :weight
 
-    def initialize(name = 0, age = 0, genre = nil, weight = 0)
-      @name = name
+    def initialize(id = 0, age = 0, genre = nil, weight = 0.0)
+      @id = id
       @age = age
       @genre = genre
       @weight = weight
@@ -18,7 +18,7 @@ module Farm
     end
 
     def to_s
-      "Name: #{@name}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}\nCount: #{@@count}"
+      "Name: #{@name}\nAge: #{@age}\nGenre: #{@genre}\nWeight: #{@weight}"
     end
 
     def self.count

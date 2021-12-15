@@ -4,15 +4,15 @@ module Farm
 
     attr_accessor :breed, :exploit, :feed
 
-    def initialize(name = "", breed = "", exploit = "", feed = "")
-      super(name)
+    def initialize(id = 0, age = 0, genre = nil, weight = 0.0, breed = "", exploit = "", feed = "")
+      super(id, age, genre, weight)
       @breed = breed
       @exploit = exploit
       @feed = feed
     end
 
     def to_s
-      "Livestock: #{@name} (#{@breed}), #{@exploit}, #{@feed}"
+      super + "\nBreed: #{@breed}\nExploit: #{@exploit}\nFeed: #{@feed}"
     end
 
     def <=>(other)

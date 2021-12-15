@@ -1,5 +1,7 @@
 module Farm 
     class Cattle < Data
+        include Enumerable
+
 		attr_accessor :data, :destiny, :number, :type,
                     :price, :sale_price, :animals
 
@@ -20,6 +22,10 @@ module Farm
             @data.to_s + "\nType: #{@type}\nDestiny: #{@destiny}\nNumber: #{@number}\n" + 
             "Price: #{@price}\nSale Price: #{@sale_price}\nAnimals:\n" + 
             @animals.map { |animal| animal.to_s }.join("\n") + "\n"
+        end
+
+        def each
+            @animals.each { |animal| yield animal }
         end
     end
 end

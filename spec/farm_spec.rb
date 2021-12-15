@@ -334,6 +334,10 @@ RSpec.describe Farm do
         "Type: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\nSale Price: 0.0\n" +
         "Animals:\nID: 3\nAge: 12312\nGender: Macho\nWeight: 123.3\n")
       end
+
+      it "Has an each method to iterate over the animals" do
+        expect(@cattle.each { |animal| animal }).not_to be nil
+      end
     end
   end
 end

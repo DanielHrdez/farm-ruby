@@ -5,6 +5,7 @@ require_relative "farm/data"
 require_relative "farm/function"
 require_relative "farm/animal"
 require_relative "farm/livestock"
+require_relative "farm/cattle"
 
 module Farm
   class Error < StandardError; end

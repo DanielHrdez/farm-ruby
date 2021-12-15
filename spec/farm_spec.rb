@@ -262,4 +262,16 @@ RSpec.describe Farm do
       end
     end
   end
+
+  describe "Representation of the Farm - Farm::Cattle" do
+    before :all do
+      @cattle = Farm::Cattle.new
+    end
+
+    context "Inheritance of the class Cattle" do
+      it "An instance of the Cattle class is expected to be an Cattle" do
+        expect(@cattle).to be_a(Farm::Cattle)
+      end
+    end
+  end
 end

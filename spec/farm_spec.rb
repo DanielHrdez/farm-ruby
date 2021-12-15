@@ -348,6 +348,10 @@ RSpec.describe Farm do
       it "Has a max method to get the maximum weight of the animals" do
         expect(@cattle.max { |animal| animal.weight }).not_to be nil
       end
+
+      it "Has a min method to get the minimum weight of the animals" do
+        expect(@cattle.min { |animal| animal.weight }).not_to be nil
+      end
     end
   end
 end

@@ -36,5 +36,13 @@ module Farm
             end
             yield max
         end
+
+        def min 
+            min = @animals[0]
+            @animals.each do |animal|
+                min = animal if animal < min
+            end
+            yield min
+        end
     end
 end

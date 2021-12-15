@@ -30,19 +30,15 @@ module Farm
         end
 
         def max 
-            max = @animals[0]
-            @animals.each do |animal|
-                max = animal if animal > max
-            end
-            yield max
+            @animals.max
         end
 
         def min 
-            min = @animals[0]
-            @animals.each do |animal|
-                min = animal if animal < min
-            end
-            yield min
+            @animals.min
+        end
+
+        def sort
+            @animals.sort
         end
     end
 end

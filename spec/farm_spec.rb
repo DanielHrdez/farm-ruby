@@ -266,7 +266,7 @@ RSpec.describe Farm do
   describe "Representation of the Farm - Farm::Cattle" do
     before :all do
       @vaca = Farm::Animal.new(3, 12312, :Macho, 123.3)
-      @cabra = Farm::Animal.new(4, 12312, :Hembra, 123.3)
+      @cabra = Farm::Animal.new(4, 12398, :Hembra, 323.3)
       @cattle = Farm::Cattle.new(
         1234,     "La Granja de Juan",  "La Granja de Juan es Ganadera",
         :Bovine,  :Milk,                0, 
@@ -337,7 +337,7 @@ RSpec.describe Farm do
           "Type Cattle: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\n" + 
           "Sale Price: 0.0\n" + "Animals:\nID: 3\nAge: 12312\n" + 
           "Gender: Macho\nWeight: 123.3\n" +
-          "ID: 4\nAge: 12312\nGender: Hembra\nWeight: 123.3\n"
+          "ID: 4\nAge: 12398\nGender: Hembra\nWeight: 323.3\n"
         )
       end
 
@@ -346,11 +346,15 @@ RSpec.describe Farm do
       end
 
       it "Has a max method to get the maximum weight of the animals" do
-        expect(@cattle.max { |animal| animal.weight }).not_to be nil
+        expect(@cattle.max { |animal| animal }).to eq @cabra
       end
 
       it "Has a min method to get the minimum weight of the animals" do
-        expect(@cattle.min { |animal| animal.weight }).not_to be nil
+        expect(@cattle.min { |animal| animal }).to eq @vaca
+      end
+
+      it "Has a sort method to sort the animals by weight" do
+        expect(@cattle.sort { |animal| animal }).to eq [@vaca, @cabra]
       end
     end
   end

@@ -288,6 +288,10 @@ RSpec.describe Farm do
       it "An instance of the Cattle class is not expected to be an Animal" do
         expect(@cattle).not_to be_a(Farm::Animal)
       end
+
+      it "An instance of the Cattle class is not expected to be a livestock" do
+        expect(@cattle).not_to be_a(Farm::Livestock)
+      end
     end
   end
 end

@@ -342,7 +342,7 @@ RSpec.describe Farm do
       end
 
       it "Has an each method to iterate over the animals" do
-        expect(@cattle.each { |animal| animal }).not_to be nil
+        expect(@cattle.each { |animal| animal }).to eq [@vaca, @cabra]
       end
 
       it "Has a max method to get the maximum weight of the animals" do
@@ -355,6 +355,10 @@ RSpec.describe Farm do
 
       it "Has a sort method to sort the animals by weight" do
         expect(@cattle.sort { |animal| animal }).to eq [@vaca, @cabra]
+      end
+
+      it "Has a collect method to iterate over the animals and return a new array" do
+        expect(@cattle.collect { |animal| animal }).to eq [@vaca, @cabra]
       end
     end
   end

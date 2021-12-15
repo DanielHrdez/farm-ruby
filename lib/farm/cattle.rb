@@ -40,5 +40,9 @@ module Farm
         def sort
             @animals.sort
         end
+
+        def collect
+            @animals.collect { |animal| yield animal }
+        end
     end
 end

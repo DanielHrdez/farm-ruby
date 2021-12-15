@@ -27,5 +27,13 @@ module Farm
         def each
             @animals.each { |animal| yield animal }
         end
+
+        def max 
+            max = @animals[0]
+            @animals.each do |animal|
+                max = animal if animal > max
+            end
+            yield max
+        end
     end
 end

@@ -26,14 +26,14 @@ module Farm
     end
 
     def <=>(other)
-      self.weight <=> other.weight
+      @weight <=> other.weight
     end
 
     def ==(other)
-      self.id == other.id && 
-      self.age == other.age &&
-      self.gender == other.gender &&
-      self.weight == other.weight
+      @id == other.id && 
+      @age == other.age &&
+      @gender == other.gender &&
+      @weight == other.weight
     end
   end
 end

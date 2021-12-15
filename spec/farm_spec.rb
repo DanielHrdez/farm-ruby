@@ -267,9 +267,10 @@ RSpec.describe Farm do
     before :all do
       @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
       @vaca = Farm::Animal.new(3, 12312, :Macho, 123.3)
+      @cabra = Farm::Animal.new(4, 12312, :Hembra, 123.3)
       @cattle = Farm::Cattle.new(
                               @data, :Bovine, :Milk, 
-                              0, 0.0, 0.0, [@vaca]
+                              0, 0.0, 0.0, [@vaca, @cabra],
                               )
     end
 
@@ -332,11 +333,16 @@ RSpec.describe Farm do
         expect(@cattle.to_s).to eq("ID: 1\n" + 
         "Name: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera\n" + 
         "Type: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\nSale Price: 0.0\n" +
-        "Animals:\nID: 3\nAge: 12312\nGender: Macho\nWeight: 123.3\n")
+        "Animals:\nID: 3\nAge: 12312\nGender: Macho\nWeight: 123.3\n" +
+        "ID: 4\nAge: 12312\nGender: Hembra\nWeight: 123.3\n")
       end
 
       it "Has an each method to iterate over the animals" do
         expect(@cattle.each { |animal| animal }).not_to be nil
+      end
+
+      it "Has a max method to get the maximum weight of the animals" do
+        expect(@cattle.max { |animal| animal.weight }).not_to be nil
       end
     end
   end

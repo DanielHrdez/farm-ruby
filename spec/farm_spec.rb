@@ -342,27 +342,27 @@ RSpec.describe Farm do
       end
 
       it "Has an each method to iterate over the animals" do
-        expect(@cattle.each { |animal| animal }).to eq [@vaca, @cabra]
+        expect(@cattle.each {}).to eq [@vaca, @cabra]
       end
 
       it "Has a max method to get the maximum weight of the animals" do
-        expect(@cattle.max { |animal| animal }).to eq @cabra
+        expect(@cattle.max {}).to eq @cabra
       end
 
       it "Has a min method to get the minimum weight of the animals" do
-        expect(@cattle.min { |animal| animal }).to eq @vaca
+        expect(@cattle.min {}).to eq @vaca
       end
 
       it "Has a sort method to sort the animals by weight" do
-        expect(@cattle.sort { |animal| animal }).to eq [@vaca, @cabra]
+        expect(@cattle.sort {}).to eq [@vaca, @cabra]
       end
 
       it "Has a collect method to iterate over the animals and return a new array" do
-        expect(@cattle.collect { |animal| animal }).to eq [@vaca, @cabra]
+        expect(@cattle.collect { |animal| animal.age > 12352 }).to eq [false, true]
       end
 
       it "Has a select method to iterate over the animals and return a new array" do
-        expect(@cattle.select { |animal| animal }).to eq [@vaca, @cabra]
+        expect(@cattle.select { |animal| animal.weight > 300 }).to eq [@cabra]
       end
     end
   end

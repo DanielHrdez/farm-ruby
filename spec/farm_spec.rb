@@ -266,7 +266,7 @@ RSpec.describe Farm do
   describe "Representation of the Farm - Farm::Cattle" do
     before :all do
       @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
-      @cattle = Farm::Cattle.new(@data, type = :Bovine)
+      @cattle = Farm::Cattle.new(@data, type = :Bovine, destiny = :Milk)
     end
 
     context "Inheritance of the class Cattle" do
@@ -302,6 +302,10 @@ RSpec.describe Farm do
 
       it "Has an attribute for the type of livestock(Bovine, Ovine, Caprine or Porcine)" do
         expect(@cattle.type).to eq(:Bovine)
+      end
+
+      it "Has an attribute for the destiny of the animals(Milk, Sacrifice)" do
+        expect(@cattle.destiny).to eq(:Milk)
       end
     end
   end

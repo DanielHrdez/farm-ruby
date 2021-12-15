@@ -1,16 +1,16 @@
 module Farm
   class Data
-		attr_accessor :id, :name, :type, :description
+		attr_accessor :id, :name, :type_farm, :description
 
-    def initialize(id = 0, name = "", type = "", description = "")
+    def initialize(id = 0, name = "", type_farm = "", description = "")
       @id = id
 			@name = name
-			@type = type
+			@type_farm = type_farm
 			@description = description
     end
 
     def to_s
-      "ID: #{@id}\nName: #{@name}\nType: #{@type}\nDescription: #{@description}"
+      "ID: #{@id}\nName: #{@name}\nType Farm: #{@type_farm}\nDescription: #{@description}"
     end
   end
 end

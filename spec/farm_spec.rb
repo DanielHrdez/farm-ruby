@@ -186,7 +186,7 @@ RSpec.describe Farm do
       end
 
       it "Has an attribute for the type of the farm (poultry, livestock)" do
-        expect(@data.type).to eq("Ganadera")
+        expect(@data.type_farm).to eq("Ganadera")
       end
 
       it "Has an attribute for the description of the farm" do
@@ -194,7 +194,7 @@ RSpec.describe Farm do
       end
 
       it "A string is obtained with the information of the farm correctly formatted" do
-        expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera")
+        expect(@data.to_s).to eq("ID: 1\nName: La Granja de Juan\nType Farm: Ganadera\nDescription: La Granja de Juan es Ganadera")
       end
     end
 
@@ -265,13 +265,13 @@ RSpec.describe Farm do
 
   describe "Representation of the Farm - Farm::Cattle" do
     before :all do
-      @data = Farm::Data.new(1, "La Granja de Juan", "Ganadera", "La Granja de Juan es Ganadera")
       @vaca = Farm::Animal.new(3, 12312, :Macho, 123.3)
       @cabra = Farm::Animal.new(4, 12312, :Hembra, 123.3)
       @cattle = Farm::Cattle.new(
-                              @data, :Bovine, :Milk, 
-                              0, 0.0, 0.0, [@vaca, @cabra],
-                              )
+        1234,     "La Granja de Juan",  "La Granja de Juan es Ganadera",
+        :Bovine,  :Milk,                0, 
+        0.0,      0.0,                  [@vaca, @cabra],
+      )
     end
 
     context "Inheritance of the class Cattle" do
@@ -302,11 +302,11 @@ RSpec.describe Farm do
 
     context "Atributes of the class Cattle" do
       it "Has a class to store the data of the farm" do 
-        expect(@cattle.data).not_to be nil
+        expect(@cattle).not_to be nil
       end
 
       it "Has an attribute for the type of livestock(Bovine, Ovine, Caprine or Porcine)" do
-        expect(@cattle.type).to eq(:Bovine)
+        expect(@cattle.type_cattle).to eq(:Bovine)
       end
 
       it "Has an attribute for the destiny of the animals(Milk, Sacrifice)" do
@@ -330,11 +330,15 @@ RSpec.describe Farm do
       end
 
       it "A string is obtained with the information of the farm correctly formatted" do
-        expect(@cattle.to_s).to eq("ID: 1\n" + 
-        "Name: La Granja de Juan\nType: Ganadera\nDescription: La Granja de Juan es Ganadera\n" + 
-        "Type: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\nSale Price: 0.0\n" +
-        "Animals:\nID: 3\nAge: 12312\nGender: Macho\nWeight: 123.3\n" +
-        "ID: 4\nAge: 12312\nGender: Hembra\nWeight: 123.3\n")
+        expect(@cattle.to_s).to eq(
+          "ID: 1234\n" + 
+          "Name: La Granja de Juan\nType Farm: Cattle\n" + 
+          "Description: La Granja de Juan es Ganadera\n" + 
+          "Type Cattle: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\n" + 
+          "Sale Price: 0.0\n" + "Animals:\nID: 3\nAge: 12312\n" + 
+          "Gender: Macho\nWeight: 123.3\n" +
+          "ID: 4\nAge: 12312\nGender: Hembra\nWeight: 123.3\n"
+        )
       end
 
       it "Has an each method to iterate over the animals" do

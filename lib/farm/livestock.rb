@@ -2,7 +2,7 @@ module Farm
   class Livestock < Animal
     include Comparable
 
-    attr_accessor :id, :age, :genre, :weight, :breed, :exploit, :feed
+    attr_accessor :breed, :exploit, :feed
 
     def initialize(id = 0, age = 0, genre = nil, weight = 0.0, breed = nil, exploit = nil, feed = nil)
       super(id, age, genre, weight)

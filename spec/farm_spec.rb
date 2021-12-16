@@ -142,6 +142,22 @@ RSpec.describe Farm do
         @cat = Farm::Livestock.new(6, 65467, :Macho, 543435.67, :Bovine, :Meat, :Omnivore)
         expect(@pork.between?(@dog, @cat)).to eq(false)
       end
+
+      it "The livestock of the farm can be summed with +" do
+        expect(@pork + 5).not_to eq(@pork)
+      end
+
+      it "The livestock of the farm can be subtracted with -" do
+        expect(@pork - 5).not_to eq(@pork)
+      end
+
+      it "The livestock of the farm can be multiplied with *" do
+        expect(@pork * 5).not_to eq(@pork)
+      end
+
+      it "The livestock of the farm can be divided with /" do
+        expect(@pork / 5).not_to eq(@pork)
+      end
     end
 
     context "Inheritance of the class Livestock" do
@@ -359,9 +375,9 @@ RSpec.describe Farm do
       end
 
       it "Has a collect method to iterate over the animals and return a new array" do
-        expect(@cattle.collect { |animal| animal.age    > 12352 }).to eq [false, true]
-        expect(@cattle.collect { |animal| animal.age    + 1     }).to eq [12313, 12399]
-        expect(@cattle.collect { |animal| animal.weight - 1000  }).to eq [-876.7, -676.7]
+        expect(@cattle.collect { |animal| animal.age    > 12352 }).to eq [  false,   true]
+        expect(@cattle.collect { |animal| animal.age    + 1     }).to eq [  12313,  12399]
+        expect(@cattle.collect { |animal| animal.weight - 1000  }).to eq [ -876.7, -676.7]
       end
 
       it "Has a select method to iterate over the animals and return a new array" do
@@ -376,14 +392,14 @@ RSpec.describe Farm do
       end
 
       it "Has a reject method to iterate over the animals and return a new array" do
-        expect(@cattle.reject { |animal| animal.weight > 300    }).to eq [@vaca]
+        expect(@cattle.reject { |animal| animal.weight > 300    }).to eq [@vaca ]
         expect(@cattle.reject { |animal| animal.age    < 12352  }).to eq [@cabra]
         expect(@cattle.reject { |animal| animal.id     == 3     }).to eq [@cabra]
       end
 
       it "Has a map method to iterate over the animals and return a new array" do
-        expect(@cattle.map { |animal| animal.age    + 1     }).to eq [12313, 12399]
-        expect(@cattle.map { |animal| animal.weight - 1000  }).to eq [-876.7, -676.7]
+        expect(@cattle.map { |animal| animal.age    + 1     }).to eq [  12313,  12399]
+        expect(@cattle.map { |animal| animal.weight - 1000  }).to eq [ -876.7, -676.7]
       end
 
       it "Has a find method to iterate over the animals and return the first one that satisfies the condition" do

@@ -16,14 +16,62 @@ module Farm
     end
 
     def <=>(other)
-      self.age <=> other.age
+      @age <=> other.age
     end
 
     def ==(other)
       super == other &&
-      self.breed == other.breed &&
-      self.exploit == other.exploit &&
-      self.feed == other.feed
+      @breed == other.breed &&
+      @exploit == other.exploit &&
+      @feed == other.feed
+    end
+
+    def + (value) 
+      Livestock.new(
+        @id,
+        @age + value,
+        @genre,
+        @weight + value,
+        @breed,
+        @exploit,
+        @feed
+      )
+    end
+
+    def * (value)
+      Livestock.new(
+        @id * value,
+        @age * value,
+        @genre,
+        @weight * value,
+        @breed,
+        @exploit,
+        @feed
+      )
+    end
+
+    def / (value)
+      Livestock.new(
+        @id / value,
+        @age / value,
+        @genre,
+        @weight / value,
+        @breed,
+        @exploit,
+        @feed
+      )
+    end
+
+    def - (value)
+      Livestock.new(
+        @id - value,
+        @age - value,
+        @genre,
+        @weight - value,
+        @breed,
+        @exploit,
+        @feed
+      )
     end
   end
 end

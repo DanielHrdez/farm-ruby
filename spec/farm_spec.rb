@@ -254,20 +254,22 @@ RSpec.describe Farm do
         expect(Farm::Function.manage(:cages, 16 )).to eq :auto
       end
 
-      it "Exist a process to give antibiotics to the animals" do
-        @cabra = Farm::Animal.new(1, 1234, :Hembra, 3200.5)
-        @obeja = Farm::Animal.new(2, 5678, :Macho, 4500.67)
+      before :all do
+        @cabra = Farm::Animal.new(1, 500, :Hembra, 3200.5)
+        @oveja = Farm::Animal.new(2, 770, :Macho, 4500.67)
         @murcielago = Farm::Animal.new(3, 9012, :Hembra, 181)
         @cattle = Farm::Cattle.new(
           4, "La Granja de Juan", "La Granja de Juan es Ganadera",
-          :Ganadera, :Meat, 0.0, 0.0, [@cabra, @obeja, @murcielago]
+          :Ganadera, :Meat, 0.0, 0.0, [@cabra, @oveja, @murcielago]
         )
+      end
 
+      it "Exist a process to give antibiotics to the animals" do
         expect(Farm::Function.antibiotics(@cattle)).to eq [32005.0, 45006.7, 1810]
       end
 
-      it "Exist a process to set the reproduction of the animals" do
-        expect(Farm::Function.repro).not_to be nil
+      it "Exist a process to get the animals that can reproduce" do
+        expect(Farm::Function.repro(@cattle)).to eq [@oveja, @murcielago]
       end
     end
 

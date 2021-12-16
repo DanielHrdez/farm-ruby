@@ -21,8 +21,8 @@ module Farm
       cattle.collect { |animal| animal.weight * MG_PER_KG }
     end
 
-    def self.repro
-      "All species mate correctly"
+    def self.repro(cattle)
+      cattle.select { |animal| animal.age > (2 * 12 * 30) }
     end
   end
 end

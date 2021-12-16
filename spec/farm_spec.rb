@@ -228,7 +228,8 @@ RSpec.describe Farm do
       end
 
       it "Exist a constant to represent the life conditions (open field, barn)" do
-        expect(Farm::Function::LIFE_CONDITIONS).not_to be nil
+        expect(Farm::Function::FIELD).not_to be nil
+        expect(Farm::Function::BARN).not_to be nil
       end
 
       it "Exist a process to set the cares of the animals" do
@@ -358,15 +359,43 @@ RSpec.describe Farm do
       end
 
       it "Has a collect method to iterate over the animals and return a new array" do
-        expect(@cattle.collect { |animal| animal.age > 12352 }).to eq [false, true]
-        expect(@cattle.collect { |animal| animal.age + 1 }).to eq [12313, 12399]
-        expect(@cattle.collect { |animal| animal.weight + 1 }).to eq [124.3, 324.3]
+        expect(@cattle.collect { |animal| animal.age    > 12352 }).to eq [false, true]
+        expect(@cattle.collect { |animal| animal.age    + 1     }).to eq [12313, 12399]
+        expect(@cattle.collect { |animal| animal.weight - 1000  }).to eq [-876.7, -676.7]
       end
 
       it "Has a select method to iterate over the animals and return a new array" do
-        expect(@cattle.select { |animal| animal.weight > 300 }).to eq [@cabra]
-        expect(@cattle.select { |animal| animal.age < 12352 }).to eq [@vaca]
-        expect(@cattle.select { |animal| animal.id == 3 }).to eq [@vaca]
+        expect(@cattle.select { |animal| animal.weight  > 300   }).to eq [@cabra]
+        expect(@cattle.select { |animal| animal.age     < 12352 }).to eq [@vaca]
+        expect(@cattle.select { |animal| animal.id      == 3    }).to eq [@vaca]
+      end
+
+      it "Has a count method to count the animals" do
+        expect(@cattle.count { |animal| animal              }).to eq 2
+        expect(@cattle.count { |animal| animal.weight > 300 }).to eq 1
+      end
+
+      it "Has a reject method to iterate over the animals and return a new array" do
+        expect(@cattle.reject { |animal| animal.weight > 300    }).to eq [@vaca]
+        expect(@cattle.reject { |animal| animal.age    < 12352  }).to eq [@cabra]
+        expect(@cattle.reject { |animal| animal.id     == 3     }).to eq [@cabra]
+      end
+
+      it "Has a map method to iterate over the animals and return a new array" do
+        expect(@cattle.map { |animal| animal.age    + 1     }).to eq [12313, 12399]
+        expect(@cattle.map { |animal| animal.weight - 1000  }).to eq [-876.7, -676.7]
+      end
+
+      it "Has a find method to iterate over the animals and return the first one that satisfies the condition" do
+        expect(@cattle.find { |animal| animal.weight > 300    }).to eq @cabra
+        expect(@cattle.find { |animal| animal.age    < 12352  }).to eq @vaca
+        expect(@cattle.find { |animal| animal.id     == 3     }).to eq @vaca
+      end
+
+      it "Has a any? method to iterate over the animals and return true if at least one animal satisfies the condition" do
+        expect(@cattle.any? { |animal| animal.weight > 300    }).to eq true
+        expect(@cattle.any? { |animal| animal.age    < 12352  }).to eq true
+        expect(@cattle.any? { |animal| animal.id     == 3     }).to eq true
       end
     end
   end

@@ -48,5 +48,25 @@ module Farm
         def select
             @animals.select { |animal| yield animal }
         end
+
+        def count
+            @animals.count { |animal| yield animal }
+        end
+
+        def reject
+            @animals.reject { |animal| yield animal }
+        end
+
+        def find
+            @animals.find { |animal| yield animal }
+        end
+
+        def map
+            @animals.map { |animal| yield animal }
+        end
+
+        def any?
+            @animals.any? { |animal| yield animal }
+        end
     end
 end

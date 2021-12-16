@@ -245,11 +245,13 @@ RSpec.describe Farm do
 
       it "Exist a constant to represent the life conditions (open field, barn)" do
         expect(Farm::Function::FIELD).not_to be nil
-        expect(Farm::Function::BARN).not_to be nil
+        expect(Farm::Function::CAGES).not_to be nil
       end
 
-      it "Exist a process to set the cares of the animals" do
-        expect(Farm::Function.cares).not_to be nil
+      it "Exist a process to manage the animals" do
+        expect(Farm::Function.manage(:field, 5  )).to eq :sheds
+        expect(Farm::Function.manage(:field, 12 )).to eq :free
+        expect(Farm::Function.manage(:cages, 16 )).to eq :auto
       end
 
       it "Exist a process to set the reproduction of the animals" do

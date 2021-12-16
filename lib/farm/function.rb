@@ -1,10 +1,18 @@
 module Farm
   module Function
     FIELD = :field
-    BARN = :barn
+    CAGES = :cages
 
-    def self.cares
-      "Feeding, Watering and Weeding"
+    def self.manage(environment, hour)
+      if environment == CAGES
+        return :auto
+      elsif environment == FIELD
+        if hour > 6 && hour < 18
+          return :free
+        else
+          return :sheds
+        end
+      end
     end
 
     def self.repro

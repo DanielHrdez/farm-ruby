@@ -5,8 +5,8 @@ module Farm
     attr_accessor :id, :age, :gender, :weight
 
     def initialize(id = 0, age = 0, gender = nil, weight = 0.0)
-      @id = id
-      @age = age
+      @id     = id
+      @age    = age
       @gender = gender
       @weight = weight
 

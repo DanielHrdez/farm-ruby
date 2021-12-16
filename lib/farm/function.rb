@@ -3,6 +3,8 @@ module Farm
     FIELD = :field
     CAGES = :cages
 
+    MG_PER_KG = 10
+
     def self.manage(environment, hour)
       if environment == CAGES
         return :auto
@@ -13,6 +15,10 @@ module Farm
           return :sheds
         end
       end
+    end
+
+    def self.antibiotics(cattle)
+      cattle.collect { |animal| animal.weight * MG_PER_KG }
     end
 
     def self.repro

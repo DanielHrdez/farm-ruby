@@ -254,6 +254,18 @@ RSpec.describe Farm do
         expect(Farm::Function.manage(:cages, 16 )).to eq :auto
       end
 
+      it "Exist a process to give antibiotics to the animals" do
+        @cabra = Farm::Animal.new(1, 1234, :Hembra, 3200.5)
+        @obeja = Farm::Animal.new(2, 5678, :Macho, 4500.67)
+        @murcielago = Farm::Animal.new(3, 9012, :Hembra, 181)
+        @cattle = Farm::Cattle.new(
+          4, "La Granja de Juan", "La Granja de Juan es Ganadera",
+          :Ganadera, :Meat, 0.0, 0.0, [@cabra, @obeja, @murcielago]
+        )
+
+        expect(Farm::Function.antibiotics(@cattle)).to eq [32005.0, 45006.7, 1810]
+      end
+
       it "Exist a process to set the reproduction of the animals" do
         expect(Farm::Function.repro).not_to be nil
       end
@@ -288,7 +300,7 @@ RSpec.describe Farm do
       @cabra = Farm::Animal.new(4, 12398, :Hembra, 323.3)
       @cattle = Farm::Cattle.new(
         1234,     "La Granja de Juan",  "La Granja de Juan es Ganadera",
-        :Bovine,  :Milk,                0, 
+        :Bovine,  :Milk, 
         0.0,      0.0,                  [@vaca, @cabra],
       )
     end
@@ -333,7 +345,7 @@ RSpec.describe Farm do
       end
 
       it "Has an attribute for the number of animals" do
-        expect(@cattle.number).to eq(0)
+        expect(@cattle.number).to eq(2)
       end
 
       it "Has an attribute for the unitary price of the animals" do
@@ -353,7 +365,7 @@ RSpec.describe Farm do
           "ID: 1234\n" + 
           "Name: La Granja de Juan\nType Farm: Cattle\n" + 
           "Description: La Granja de Juan es Ganadera\n" + 
-          "Type Cattle: Bovine\nDestiny: Milk\nNumber: 0\nPrice: 0.0\n" + 
+          "Type Cattle: Bovine\nDestiny: Milk\nNumber: 2\nPrice: 0.0\n" + 
           "Sale Price: 0.0\n" + "Animals:\nID: 3\nAge: 12312\n" + 
           "Gender: Macho\nWeight: 123.3\n" +
           "ID: 4\nAge: 12398\nGender: Hembra\nWeight: 323.3\n"

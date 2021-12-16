@@ -7,13 +7,13 @@ module Farm
 
         def initialize(
             id = 0,             name = "",          description = "",
-            type_cattle = nil,  destiny = nil,      number = 0,
+            type_cattle = nil,  destiny = nil,
             price = 0.0,        sale_price = 0.0,   animals = [] 
             )
             super(id, name, :Cattle, description)
             @type_cattle = type_cattle
             @destiny = destiny
-            @number = number
+            @number = animals.size
             @price = price
             @sale_price = sale_price
             @animals = animals

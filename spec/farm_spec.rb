@@ -265,7 +265,7 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to give antibiotics to the animals" do
-        expect(Farm::Function.antibiotics(0.01, @cattle)).to eq [32.005, 45.0067, 1.81]
+        expect(Farm::Function.antibiotics(0.01, @cattle)).to eq [0.01, 0.01, 0.01]
       end
 
       it "Exist a process to get the animals that can reproduce" do
@@ -375,7 +375,7 @@ RSpec.describe Farm do
       end
 
       it "Has an each method to iterate over the animals" do
-        expect(@cattle.each { |attr| attr }).to eq [1234, "La Granja de Juan", "La Granja de Juan es Ganadera", :Bovine, :Milk, 0.0, 0.0, [@vaca, @cabra]]
+        expect(@cattle.each { |attr| attr }).to eq [@vaca, @cabra]
       end
 
       it "Has a max method to get the maximum weight of the animals" do

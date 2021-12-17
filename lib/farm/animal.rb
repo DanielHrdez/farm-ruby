@@ -35,5 +35,9 @@ module Farm
       @gender == other.gender &&
       @weight == other.weight
     end
+
+    def * (valor)
+      1 * valor
+    end
   end
 end

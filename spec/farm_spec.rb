@@ -269,7 +269,7 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to get the animals that can reproduce" do
-        expect(Farm::Function.repro(@cattle)).to eq [@oveja, @murcielago]
+        expect(Farm::Function.repro(24, @cattle)).to eq [@oveja, @murcielago]
       end
     end
 

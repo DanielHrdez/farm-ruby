@@ -19,8 +19,8 @@ module Farm
       cattle.collect { |animal| animal.weight * mg_per_kg }
     end
 
-    def self.repro(cattle)
-      cattle.select { |animal| animal.age > (2 * 12 * 30) }
+    def self.repro(num_meses, cattle)
+      cattle.select { |animal| animal.age > (num_meses * 30) }
     end
   end
 end

@@ -375,7 +375,7 @@ RSpec.describe Farm do
       end
 
       it "Has an each method to iterate over the animals" do
-        expect(@cattle.each {}).to eq [@vaca, @cabra]
+        expect(@cattle.each { |attr| attr }).to eq [@vaca, @cabra]
       end
 
       it "Has a max method to get the maximum weight of the animals" do

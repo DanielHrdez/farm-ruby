@@ -26,7 +26,14 @@ module Farm
         end
 
         def each
-            @animals.each { |animal| yield animal }
+            yield id
+            yield name
+            yield description
+            yield type_cattle
+            yield destiny
+            yield price
+            yield sale_price
+            yield animals
         end
 
         def max 

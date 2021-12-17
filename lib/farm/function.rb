@@ -16,7 +16,7 @@ module Farm
     end
 
     def self.antibiotics(mg_per_kg, cattle)
-      cattle.collect { |animal| animal.weight * mg_per_kg }
+      cattle.collect { |animal| animal * mg_per_kg }
     end
 
     def self.repro(num_meses, cattle)

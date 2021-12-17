@@ -27,14 +27,9 @@ module Farm
 
         def each
             yield @id
-            yield @name
-            yield @description
-            yield @type_cattle
-            yield @destiny
             yield @price
             yield @sale_price
             yield @animals
-            [@id, @name, @description, @type_cattle, @destiny, @price, @sale_price, @animals]
         end
 
         def max 

@@ -265,7 +265,7 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to give antibiotics to the animals" do
-        expect(Farm::Function.antibiotics(@cattle)).to eq [32005.0, 45006.7, 1810]
+        expect(Farm::Function.antibiotics(0.01, @cattle)).to eq [32.005, 45.0067, 1.81]
       end
 
       it "Exist a process to get the animals that can reproduce" do

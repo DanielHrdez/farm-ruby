@@ -33,7 +33,7 @@ module Farm
             yield @destiny
             yield @price
             yield @sale_price
-            @animals.each { |animal| yield animal }
+            yield @animals
             [@id, @name, @description, @type_cattle, @destiny, @price, @sale_price, @animals]
         end
 

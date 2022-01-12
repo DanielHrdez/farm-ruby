@@ -51,11 +51,20 @@ module Farm
         else_clause.call
       end
     end
-    
+
+    # calc mean of block
+    def self.mean(&block)
+      sum = 0
+      block.call.each do |value|
+        sum += value
+      end
+      sum / block.call.size
+    end
+
     def self.welfare(cattle, environment)
       self.my_if environment == FIELD,
         -> { cattle.collect { |animal| animal.weight / animal.age }.max },
-        -> { cattle.collect { |animal| animal.weight / animal.age }.mean * 0.5 }
+        -> { self.mean { cattle.collect { |animal| animal.weight / animal.age } } * 0.5 }
     end
 
     # def self.net_profit(cattle)

@@ -271,6 +271,11 @@ RSpec.describe Farm do
       it "Exist a process to get the animals that can reproduce" do
         expect(Farm::Function.repro(24, @cattle)).to eq [@oveja, @murcielago]
       end
+
+      it "Exist a process to get the welfare of a farm" do
+        expect(Farm::Function.welfare(@cattle, :field)).to eq(6.401)
+        expect(Farm::Function.welfare(@cattle, :cages)).to eq(2.041004329004329)
+      end
     end
 
     context "Inheritance of the module Function" do

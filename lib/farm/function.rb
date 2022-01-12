@@ -23,28 +23,7 @@ module Farm
       cattle.select { |animal| animal.age > (num_meses * 30) }
     end
 
-    # def self.welfare(cattle, environment)
-    #   max = 0
-    #   mean = 0
-
-    #   cattle.animals.each do |animal|
-    #     ratio = animal.weight / animal.age
-    #     if ratio > max
-    #       max = ratio
-    #     end
-    #     mean += ratio
-    #   end
-
-    #   mean /= cattle.animals.size
-
-    #   if environment == FIELD
-    #     max
-    #   else
-    #     mean * 0.5
-    #   end
-    # end
-
-    def self.my_if(condition, then_clause, else_clause)
+    def self.if(condition, then_clause, else_clause)
       if condition
         then_clause.call
       else
@@ -52,35 +31,17 @@ module Farm
       end
     end
 
-    # calc mean of block
-    def self.mean(&block)
-      sum = 0
-      block.call.each do |value|
-        sum += value
-      end
-      sum / block.call.size
-    end
-
     def self.welfare(cattle, environment)
-      self.my_if environment == FIELD,
+      self.if environment == FIELD,
         -> { cattle.collect { |animal| animal.weight / animal.age }.max },
-        -> { self.mean { cattle.collect { |animal| animal.weight / animal.age } } * 0.5 }
+        -> { cattle.collect { |animal| animal.weight / animal.age }.sum / cattle.number * 0.5 }
     end
 
-    # def self.net_profit(cattle)
-    #   if cattle.destiny == :Sacrifice
-    #     mean = 0
-    #     cattle.animals.each do |animal|
-    #       mean += animal.weight 
-    #     end
-    #     mean *= cattle.sale_price / cattle.animals.size
-    #   else
-    #     mean = 0
-    #     cattle.animals.each do |animal|
-    #       mean += animal.age
-    #     end
-    #     mean *= cattle.sale_price / cattle.animals.size 
-    #   end
-    # end
+    def self.net_profit(cattle)
+      self.if cattle.destiny == :Sacrifice,
+        -> { cattle.animals.collect { |animal| animal.weight }.sum / cattle.number * cattle.sale_price },
+        -> { cattle.animals.collect { |animal| animal.age }.sum / cattle.number * cattle.sale_price }
+    end
+      
   end
 end

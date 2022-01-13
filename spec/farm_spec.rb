@@ -301,13 +301,13 @@ RSpec.describe Farm do
       end
 
       it "Increasing the sale price of the farms" do
-        cooperative = [@cattle, @cattle2]
+        cooperative = [@cattle, @cattle2, @cattle3]
 
         max_productivity = cooperative.collect { |farm| Farm::Function.productivity(farm, :cages) }.max
         list_max_farm = cooperative.select { |farm| Farm::Function.productivity(farm, :cages) == max_productivity }
         max_sale = list_max_farm.collect { |farm| farm.sale_price }.max
-
-        expect(cooperative.map { |farm| farm.sale_price != max_sale ? farm.sale_price += max_sale / farm.sale_price : farm.sale_price }).to eq([2.0, 20.1])
+        
+        expect(cooperative.each { |farm| farm.sale_price != max_sale ? farm.sale_price += max_sale / farm.sale_price : farm.sale_price }.collect { |farm| farm.sale_price }).to eq([2.0, 20.1, 2.0])
       end
     end
 

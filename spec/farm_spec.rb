@@ -307,7 +307,7 @@ RSpec.describe Farm do
         list_max_farm = cooperative.select { |farm| Farm::Function.productivity(farm, :cages) == max_productivity }
         max_sale = list_max_farm.collect { |farm| farm.sale_price }.max
         
-        expect(cooperative.each { |farm| farm.sale_price != max_sale ? farm.sale_price += max_sale / farm.sale_price : farm.sale_price }.collect { |farm| farm.sale_price }).to eq([2.0, 20.1, 2.0])
+        expect(cooperative.collect { |farm| farm.sale_price != max_sale ? farm.sale_price += max_sale / farm.sale_price : farm.sale_price }).to eq([2.0, 20.1, 2.0])
       end
     end
 

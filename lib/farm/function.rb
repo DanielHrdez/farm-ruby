@@ -32,16 +32,38 @@ module Farm
     end
 
     def self.welfare(cattle, environment)
+      ratios = cattle.collect { |animal| animal.weight / animal.age }
       self.if environment == FIELD,
-        -> { cattle.collect { |animal| animal.weight / animal.age }.max },
-        -> { cattle.collect { |animal| animal.weight / animal.age }.sum / cattle.number * 0.5 }
+        -> { 100 },
+        -> { ratios.sum / cattle.number * 100 / ratios.max * 0.5 }
     end
 
     def self.net_profit(cattle)
+      weights = cattle.animals.collect { |animal| animal.weight }
+      ages = cattle.animals.collect { |animal| animal.age }
+
       self.if cattle.destiny == :Sacrifice,
-        -> { cattle.animals.collect { |animal| animal.weight }.sum / cattle.number * cattle.sale_price },
-        -> { cattle.animals.collect { |animal| animal.age }.sum / cattle.number * cattle.sale_price }
+        -> { weights.sum / cattle.number * cattle.sale_price * 100 / weights.max },
+        -> { ages.sum / cattle.number * cattle.sale_price * 100 / ages.max }
     end
+
+    def self.match(x) {
+      on: -> (pred, fn) { self.if pred.call(x), -> { fn.call }, -> { self.match(x) } },
+      otherwise: -> (fn) { fn.call }
+    } end 
+
+    def self.productivity(cattle, environment)
+      welfare = self.match(self.welfare(cattle, environment)) \
+        [:on].call(-> (x) { x <= 20 }, -> { 1 }) \
+        [:on].call(-> (x) { x > 20 && x <= 79 }, -> { 2 }) \
+        [:otherwise].call(-> { 3 })
       
+      profit = self.match(self.net_profit(cattle)) \
+        [:on].call(-> (x) { x < 10 }, -> { 1 }) \
+        [:on].call(-> (x) { x >= 10 && x <= 50 }, -> { 2 }) \
+        [:otherwise].call(-> { 3 })
+
+      ((welfare + profit) / 2).round
+    end
   end
 end

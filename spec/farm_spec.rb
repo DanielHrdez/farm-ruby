@@ -260,11 +260,11 @@ RSpec.describe Farm do
         @murcielago = Farm::Animal.new(3, 9012, :Hembra, 181)
         @cattle = Farm::Cattle.new(
           4, "La Granja de Juan", "La Granja de Juan es Ganadera",
-          :Ganadera, :Meat, 10.0, 4.0, [@cabra, @oveja, @murcielago]
+          :Ganadera, :Meat, 10.0, 2.0, [@cabra, @oveja, @murcielago]
         )
         @cattle2 = Farm::Cattle.new(
           5, "La Granja de Juan", "La Granja de Juan es Ganadera",
-          :Ganadera, :Sacrifice, 30.0, 2.0, [@cabra, @oveja, @murcielago]
+          :Ganadera, :Sacrifice, 30.0, 0.5, [@cabra, @oveja, @murcielago]
         )
       end
 
@@ -277,13 +277,17 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to get the welfare of a farm" do
-        expect(Farm::Function.welfare(@cattle, :field)).to eq(6.401)
-        expect(Farm::Function.welfare(@cattle, :cages)).to eq(2.041004329004329)
+        expect(Farm::Function.welfare(@cattle, :field)).to eq(100)
+        expect(Farm::Function.welfare(@cattle, :cages)).to eq(31.88571049842726)
       end
 
       it "Exist a process to get the net profit of a farm" do
-        expect(Farm::Function.net_profit(@cattle)).to eq(13708.0)
-        expect(Farm::Function.net_profit(@cattle2)).to eq(5254.78)
+        expect(Farm::Function.net_profit(@cattle)).to eq(76.05415002219263)
+        expect(Farm::Function.net_profit(@cattle2)).to eq(29.188876322858597)
+      end
+
+      it "Exist a process to get the productivity index of a farm" do
+        expect(Farm::Function.productivity(@cattle, :field)).to eq(3)
       end
     end
 

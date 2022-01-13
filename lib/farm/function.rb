@@ -34,7 +34,7 @@ module Farm
     def self.welfare(cattle, environment)
       ratios = cattle.collect { |animal| animal.weight / animal.age }
       self.if environment == FIELD,
-        -> { 100 },
+        -> { ratios.sum / cattle.number * 100 / ratios.max },
         -> { ratios.sum / cattle.number * 100 / ratios.max * 0.5 }
     end
 

@@ -281,7 +281,7 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to get the welfare of a farm" do
-        expect(Farm::Function.welfare(@cattle, :field)).to eq(100)
+        expect(Farm::Function.welfare(@cattle, :field)).to eq(63.77142099685452)
         expect(Farm::Function.welfare(@cattle, :cages)).to eq(31.88571049842726)
       end
 
@@ -291,13 +291,13 @@ RSpec.describe Farm do
       end
 
       it "Exist a process to get the productivity index of a farm" do
-        expect(Farm::Function.productivity(@cattle, :field)).to eq(3)
+        expect(Farm::Function.productivity(@cattle, :field)).to eq(2)
         expect(Farm::Function.productivity(@cattle2, :cages)).to eq(1)
       end
 
       it "Getting the max productivity index of an Array of farms" do
-        expect([@cattle, @cattle2].collect { |farm| Farm::Function.productivity(farm, :cages) }.max).to eq(2)
-        expect([@cattle3, @cattle2].collect { |farm| Farm::Function.productivity(farm, :field) }.max).to eq(3)
+        expect([@cattle, @cattle2].collect { |farm| Farm::Function.productivity(farm, :field) }.max).to eq(2)
+        expect([@cattle3, @cattle].collect { |farm| Farm::Function.productivity(farm, :cages) }.max).to eq(2)
       end
 
       it "Increasing the sale price of the farms" do

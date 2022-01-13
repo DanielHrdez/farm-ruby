@@ -266,6 +266,10 @@ RSpec.describe Farm do
           5, "La Granja de Juan", "La Granja de Juan es Ganadera",
           :Ganadera, :Sacrifice, 30.0, 0.1, [@cabra, @oveja]
         )
+        @cattle3 = Farm::Cattle.new(
+          6, "La Granja de Juan", "La Granja de Juan es Ganadera",
+          :Ganadera, :Meat, 10.0, 2.0, [@oveja, @murcielago]
+        )
       end
 
       it "Exist a process to give antibiotics to the animals" do
@@ -293,6 +297,7 @@ RSpec.describe Farm do
 
       it "Getting the max productivity index of an Array of farms" do
         expect([@cattle, @cattle2].collect { |farm| Farm::Function.productivity(farm, :cages) }.max).to eq(2)
+        expect([@cattle3, @cattle2].collect { |farm| Farm::Function.productivity(farm, :field) }.max).to eq(3)
       end
 
       it "Increasing the sale price of the farms" do
@@ -301,15 +306,8 @@ RSpec.describe Farm do
         max_productivity = cooperative.collect { |farm| Farm::Function.productivity(farm, :cages) }.max
         list_max_farm = cooperative.select { |farm| Farm::Function.productivity(farm, :cages) == max_productivity }
         max_sale = list_max_farm.collect { |farm| farm.sale_price }.max
-        max_farm = list_max_farm.select { |farm| farm.sale_price == max_sale }.first
 
-        cooperative.each do |farm|
-          if farm != max_farm
-            farm.sale_price += max_sale / farm.sale_price
-          end
-        end
-
-        expect(cooperative.collect { |farm| farm.sale_price }).to eq([2.0, 20.1])
+        expect(cooperative.map { |farm| farm.sale_price != max_sale ? farm.sale_price += max_sale / farm.sale_price : farm.sale_price }).to eq([2.0, 20.1])
       end
     end
 

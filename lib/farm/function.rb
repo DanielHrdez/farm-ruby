@@ -47,21 +47,26 @@ module Farm
         -> { ages.sum / cattle.number * cattle.sale_price * 100 / ages.max }
     end
 
+    def self.matched(x) {
+      on: -> (pred, fn) { self.matched(x) },
+      otherwise: -> (fn) { x }
+    } end 
+
     def self.match(x) {
-      on: -> (pred, fn) { self.if pred.call(x), -> { fn.call }, -> { self.match(x) } },
+      on: -> (pred, fn) { self.if pred.call(x), -> { self.matched(fn.call) }, -> { self.match(x) } },
       otherwise: -> (fn) { fn.call }
     } end 
 
     def self.productivity(cattle, environment)
       welfare = self.match(self.welfare(cattle, environment)) \
-        [:on].call(-> (x) { x <= 20 }, -> { 1 }) \
-        [:on].call(-> (x) { x > 20 && x <= 79 }, -> { 2 }) \
-        [:otherwise].call(-> { 3 })
+        [:on].call(-> (x) { x <= 20 },            -> { 1 }) \
+        [:on].call(-> (x) { x.between?(21, 79) }, -> { 2 }) \
+        [:otherwise].call(                        -> { 3 })
       
       profit = self.match(self.net_profit(cattle)) \
-        [:on].call(-> (x) { x < 10 }, -> { 1 }) \
-        [:on].call(-> (x) { x >= 10 && x <= 50 }, -> { 2 }) \
-        [:otherwise].call(-> { 3 })
+        [:on].call(-> (x) { x < 10 },             -> { 1 }) \
+        [:on].call(-> (x) { x.between?(10, 50) }, -> { 2 }) \
+        [:otherwise].call(                        -> { 3 })
 
       ((welfare + profit) / 2).round
     end

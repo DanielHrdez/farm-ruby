@@ -264,7 +264,7 @@ RSpec.describe Farm do
         )
         @cattle2 = Farm::Cattle.new(
           5, "La Granja de Juan", "La Granja de Juan es Ganadera",
-          :Ganadera, :Sacrifice, 30.0, 0.5, [@cabra, @oveja, @murcielago]
+          :Ganadera, :Sacrifice, 30.0, 0.1, [@cabra, @oveja]
         )
       end
 
@@ -283,11 +283,16 @@ RSpec.describe Farm do
 
       it "Exist a process to get the net profit of a farm" do
         expect(Farm::Function.net_profit(@cattle)).to eq(76.05415002219263)
-        expect(Farm::Function.net_profit(@cattle2)).to eq(29.188876322858597)
+        expect(Farm::Function.net_profit(@cattle2)).to eq(8.555581724498799)
       end
 
       it "Exist a process to get the productivity index of a farm" do
         expect(Farm::Function.productivity(@cattle, :field)).to eq(3)
+        expect(Farm::Function.productivity(@cattle2, :cages)).to eq(1)
+      end
+
+      it "Getting the max productivity index of an Array of farms" do
+        expect([@cattle, @cattle2].collect { |farm| Farm::Function.productivity(farm, :cages) }.max).to eq(2)
       end
     end
 
